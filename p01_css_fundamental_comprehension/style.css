@@ -49,6 +49,8 @@ html {
 .card article p {
   color: rgba(255,255,255,0.8);
   padding-left: 1em;
+  padding-top: 1em;
+  line-height: 1.3em;
 }
 
 /* --- More specific card rules --- */
