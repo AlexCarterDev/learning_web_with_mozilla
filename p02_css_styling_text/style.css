@@ -144,6 +144,7 @@ li::before {
   width: 1rem;
 }
 /* Navigation styling */
+/* clear bullet */
 nav li::before {
   display: none;
 }
@@ -155,12 +156,14 @@ nav li a {
   display: block;
   border: none;
   padding: 10px;
-  padding-left: 1em;
   border: 1px solid #a66;
   margin: 10px 0;
 }
 nav li a:hover {
   background-color: #fee;
   color: #a66;
-  border: 1px solid black;
+  border: 1px solid #a66;
+}
+nav li a:focus {
+  border: 1px solid #a66;
 }
