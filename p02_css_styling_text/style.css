@@ -69,8 +69,42 @@ header, footer {
 /* WRITE YOUR CODE BELOW HERE */
 html {
   font-family: "sanchez_regular", sans-serif;
+  font-size: 10px;
+}
+body {
+  line-height: 2.6rem;
+  letter-spacing: 0.07em;
+  word-spacing: 0.1em;
 }
 h1, h2, h3{
   font-family: "optimus_princeps", sans-serif;
   font-weight: bold;
+}
+aside {
+  font-size: 1.6rem;
+}
+nav {
+  font-size: 1.6rem;
+}
+section {
+  font-size: 1.8rem;
+}
+footer {
+  font-size: 1.5rem;
+}
+h1 {
+  font-size: 4rem;
+}
+h2 {
+  font-size: 3rem;
+}
+h3 {
+  font-size: 2.5rem;
+}
+header h1 {
+  text-align: center;
+  letter-spacing: 0.13em;
+}
+h1 + p, h2 + p, h3 + p {
+  text-indent: 40px;
 }
