@@ -137,7 +137,7 @@ ul {
   list-style: none;
 
 }
-li::before {
+aside li::before {
   content: "•";
   color: #a66;
   display: inline-block;
