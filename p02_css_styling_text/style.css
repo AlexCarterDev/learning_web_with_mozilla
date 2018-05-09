@@ -1,3 +1,27 @@
+@font-face {
+    font-family: 'optimus_princeps';
+    src: url('fonts/optimusprinceps-webfont.woff2') format('woff2'),
+         url('fonts/optimusprinceps-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'optimus_princeps';
+    src: url('fonts/optimusprincepssemibold-webfont.woff2') format('woff2'),
+         url('fonts/optimusprincepssemibold-webfont.woff') format('woff');
+    font-weight: bold;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'sanchez_regular';
+    src: url('fonts/sanchezregular-webfont.woff2') format('woff2'),
+         url('fonts/sanchezregular-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
 /* General setup */
 
 * {
@@ -43,3 +67,10 @@ header, footer {
 }
 
 /* WRITE YOUR CODE BELOW HERE */
+html {
+  font-family: "sanchez_regular", sans-serif;
+}
+h1, h2, h3{
+  font-family: "optimus_princeps", sans-serif;
+  font-weight: bold;
+}
