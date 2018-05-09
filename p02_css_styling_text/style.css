@@ -75,8 +75,8 @@ html {
 }
 body {
   line-height: 2.6rem;
-  letter-spacing: 0.07em;
-  word-spacing: 0.1em;
+  letter-spacing: 0.07rem;
+  word-spacing: 0.1rem;
 }
 h1, h2, h3{
   font-family: "optimus_princeps", sans-serif;
@@ -105,7 +105,7 @@ h3 {
 }
 header h1 {
   text-align: center;
-  letter-spacing: 0.13em;
+  letter-spacing: 0.13rem;
 }
 h1 + p, h2 + p, h3 + p {
   text-indent: 40px;
@@ -126,9 +126,41 @@ a:focus {
   border-bottom: none;
 }
 a[href*="http"] {
-  padding-right: 0.9em;
+  padding-right: 0.9rem;
   background-image: url(external-link-52.png);
   background-repeat: no-repeat;
-  background-size: 0.8em 0.8em;
-  background-position: 100% 0.2em;
+  background-size: 0.8rem 0.8rem;
+  background-position: 100% 0.2rem;
+}
+/* List items style */
+ul {
+  list-style: none;
+
+}
+li::before {
+  content: "•";
+  color: #a66;
+  display: inline-block;
+  width: 1rem;
+}
+/* Navigation styling */
+nav li::before {
+  display: none;
+}
+nav li {
+  background-color: #a66;
+}
+nav li a {
+  color: white;
+  display: block;
+  border: none;
+  padding: 10px;
+  padding-left: 1em;
+  border: 1px solid #a66;
+  margin: 10px 0;
+}
+nav li a:hover {
+  background-color: #fee;
+  color: #a66;
+  border: 1px solid black;
 }
