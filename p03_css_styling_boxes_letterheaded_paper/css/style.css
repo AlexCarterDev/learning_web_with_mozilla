@@ -8,7 +8,7 @@ html {
 
 body {
   margin: 0;
-  background: #fff;
+  background: #ddd;
 }
 
 article {
@@ -40,6 +40,7 @@ h1 {
 
 /* Your CSS below here */
 article {
+  background: url('../images/top-image.png') no-repeat top;
   background:
     linear-gradient(to bottom,
       rgba(0,0,0,0.2),
@@ -48,5 +49,7 @@ article {
       rgba(0,0,0,0.2)),
     url('../images/top-image.png') no-repeat top,
     url('../images/bottom-image.png') no-repeat bottom;
-
+  background-color: white;
+  border-top: 2px solid green;
+  border-bottom: 2px solid green;
 }
