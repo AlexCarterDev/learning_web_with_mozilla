@@ -8,7 +8,7 @@ html {
 
 body {
   margin: 0;
-  background: #ccc;
+  background: #fff;
 }
 
 article {
@@ -39,3 +39,14 @@ h1 {
 }
 
 /* Your CSS below here */
+article {
+  background:
+    linear-gradient(to bottom,
+      rgba(0,0,0,0.2),
+      rgba(0,0,0,0) 100px,
+      rgba(0,0,0,0) calc(100% - 100px),
+      rgba(0,0,0,0.2)),
+    url('../images/top-image.png') no-repeat top,
+    url('../images/bottom-image.png') no-repeat bottom;
+
+}
