@@ -30,6 +30,11 @@
 		right: -370px;
 		transition: 0.6s all;
 	}
+	/* only when checkbox is checked we are setting
+	the right property of the <aside> to 0px */
+	input[type=checkbox]:checked + aside {
+		right: 0px;
+	}
   </style>
 
 </head>
