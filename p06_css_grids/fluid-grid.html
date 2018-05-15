@@ -24,6 +24,12 @@
       width: 6.25%;
       background: rgb(150,255,150);
     }
+    .offset-by-one {
+      margin-left: calc(6.25% + (2.08333333%*2));
+    }
+    .offset-by-two {
+      margin-left: calc(6.25%*2 + (2.08333333%*3));
+    }
     .col.span2 { width: calc((6.25%*2) + 2.08333333%); }
     .col.span3 { width: calc((6.25%*3) + (2.08333333%*2)); }
     .col.span4 { width: calc((6.25%*4) + (2.08333333%*3)); }
@@ -62,10 +68,10 @@
         <div class="col span2">16</div>
       </div>
       <div class="row">
-        <div class="col span3">17</div>
+        <div class="col span3 offset-by-two">17</div>
         <div class="col span3">18</div>
         <div class="col span2">19</div>
-        <div class="col span4">21</div>
+        <div class="col span2">21</div>
       </div>
       <div class="row">
         <div class="col span12">17</div>
