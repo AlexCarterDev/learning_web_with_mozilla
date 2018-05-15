@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>CSS tables example</title>
+    <style>
+    html {
+      font-family: sans-serif;
+    }
+    .wrapper {
+      max-width: 960px;
+      margin: 0 auto;
+    }
+    .ask_form {
+      display: grid;
+      grid-template-columns: 0.7fr 1fr;
+      grid-gap: 10px;
+    }
+    .caption {
+      order: 10;
+      grid-column: 1 / 3;
+      text-align: center;
+      margin-right: 200px;
+      color: #999;
+      font-style: italic;
+    }
+    
+    .ask_form .ask_label {
+      text-align: right;
+      align-self: center;
+      margin-right: 20px;
+    }
+    .ask_form .ask_input {
+      max-width: 300px;
+    }
+    </style>
+  </head>
+  <body>
+    <div class="wrapper">
+      <form class="ask_form">
+        <p class="caption">First of all, tell us your name and age.</p>
+
+        <label class="ask_label" for="fname">First name:</label>
+        <input class="ask_input" type="text" id="fname">
+
+        <label class="ask_label" for="lname">Last name:</label>
+        <input class="ask_input" type="text" id="lname">
+
+        <label class="ask_label" for="age">Age:</label>
+        <input class="ask_input" type="text" id="age">
+      </form>
+    </div>
+  </body>
+</html>
