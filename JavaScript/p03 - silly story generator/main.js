@@ -6,7 +6,7 @@ function randomValueFromArray(array){
   return array[Math.floor(Math.random()*array.length)];
 }
 
-var storyTest = 'It was 94 farenheit outside, so :insertx: went for a walk. ' +
+var storyText = 'It was 94 farenheit outside, so :insertx: went for a walk. ' +
 'When they got to :inserty:, they stared in horror for a few moments, ' +
 'then :insertz:. Bob saw the whole thing, but was not surprised — :insertx: ' +
 'weighs 300 pounds, and it was a hot day.';
@@ -28,3 +28,38 @@ var insertZ = [
   'melted into a puddle on the sidewalk',
   'turned into a slug and crawled away'
 ];
+
+randomize.addEventListener('click', result);
+
+function poundsToStones(pounds) {
+  return pounds * 0.0714286;
+}
+function fahrenheitToCentigrade(f) {
+  return (f - 32) * (5/9);
+}
+
+function result() {
+  var newStory = storyText;
+  var xItem = randomValueFromArray(insertX);
+  var yItem = randomValueFromArray(insertY);
+  var zItem = randomValueFromArray(insertZ);
+  newStory = newStory.replace(':insertx:',xItem);
+  newStory = newStory.replace(':insertx:',xItem);
+  newStory = newStory.replace(':inserty:',yItem);
+  newStory = newStory.replace(':insertz:',zItem);
+
+  if(customName.value != '') {
+    var name = customName.value;
+    newStory = newStory.replace('Bob', name);
+  }
+
+  if(document.getElementById("uk").checked) {
+    var weight = Math.round(poundsToStones(300)) + ' stone';
+    var temperature =  Math.round(fahrenheitToCentigrade(94)) + ' centigrade';
+    newStory = newStory.replace('300 pounds', weight);
+    newStory = newStory.replace('94 farenheit', temperature);
+  }
+
+  story.textContent = newStory;
+  story.style.visibility = 'visible';
+}
