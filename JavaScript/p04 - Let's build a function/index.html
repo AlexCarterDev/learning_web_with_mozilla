@@ -35,7 +35,12 @@
     <button>Display message box</button>
 
     <script>
-      function displayMessage() {
+      var btn = document.querySelector('button');
+      btn.onclick = function() {
+        displayMessage('This is a different message!');
+      };
+
+      function displayMessage(msgText, msgType) {
         var html = document.querySelector('html');
 
         var panel = document.createElement('div');
@@ -43,7 +48,7 @@
         html.appendChild(panel);
 
         var msg = document.createElement('p');
-        msg.textContent = 'This is a message box';
+        msg.textContent = msgText;
         panel.appendChild(msg);
 
         var closeBtn = document.createElement('button');
