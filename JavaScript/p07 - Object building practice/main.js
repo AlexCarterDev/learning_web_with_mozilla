@@ -30,6 +30,8 @@ Ball.prototype.draw = function() {
 }
 
 Ball.prototype.update = function() {
+  var velCoeff = 0.1;
+
   if ((this.x + this.size) >= width) {
     this.velX = -(this.velX);
   }
@@ -46,6 +48,35 @@ Ball.prototype.update = function() {
     this.velY = -(this.velY);
   }
 
-  this.x += this.velX;
-  this.y += this.velY;
+  this.x += this.velX * velCoeff;
+  this.y += this.velY * velCoeff;
 }
+
+var balls = [];
+
+function loop() {
+  ctx.fillStyle = 'rgba(0, 0, 0, .3)';
+  ctx.fillRect(0, 0, width, height);
+
+  while(balls.length < 40) {
+    var size = random(5,10);
+    var ball = new Ball(
+      random(0 + size, width - size),
+      random(0 + size, height - size),
+      random(-70,70),
+      random(-70,70),
+      'rgb(' + random(0,255) + ',' + random(0,255) + ',' + random(0,255) +')',
+      size
+    );
+    balls.push(ball);
+  }
+
+  for (var i = 0; i < balls.length; i++) {
+    balls[i].draw();
+    balls[i].update();
+  }
+
+  requestAnimationFrame(loop);
+}
+
+loop();
