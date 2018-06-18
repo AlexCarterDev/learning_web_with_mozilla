@@ -125,8 +125,7 @@ Ball.prototype.collisionDetect = function() {
       var dy = this.y - balls[i].y;
       var distance = Math.sqrt(dx * dx + dy * dy);
 
-      if (distance < this.size + balls[i].size) {
-
+      if (balls[i].exists & (distance < this.size + balls[i].size)) {
         balls[i].color = this.color = 'rgb(' + random(0, 255) + ',' + random(0, 255) + ',' + random(0, 255) +')';
       }
     }
@@ -176,7 +175,7 @@ function loop() {
     score.textContent = 'Ball count: ' + ballCount;
   }
   lastBallCount = ballCount;
-  
+
   requestAnimationFrame(loop);
 }
 
