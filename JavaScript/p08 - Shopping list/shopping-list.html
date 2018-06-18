@@ -30,6 +30,29 @@
     </ul>
 
     <script>
+      function addNewItem() {
+        var inputVal = input.value;
+        input.value = '';
+        var li = document.createElement('li');
+        var span = document.createElement('span');
+        var button = document.createElement('button');
+        li.appendChild(span);
+        li.appendChild(button);
+        ul.appendChild(li);
+        span.textContent = inputVal;
+        button.textContent = 'Delete';
+
+        button.addEventListener('click', function(e) {
+          ul.removeChild(e.target.parentNode);
+        });
+
+        input.focus();
+      }
+      var ul = document.querySelector('ul');
+      var input = document.querySelector('input');
+      var button = document.querySelector('button');
+
+      button.addEventListener('click', addNewItem);
 
     </script>
   </body>
