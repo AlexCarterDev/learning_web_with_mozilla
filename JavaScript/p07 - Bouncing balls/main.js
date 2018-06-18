@@ -133,10 +133,15 @@ Ball.prototype.collisionDetect = function() {
 }
 
 var balls = [];
-
+var evilCircle;
 function loop() {
   ctx.fillStyle = 'rgba(0, 0, 0, .3)';
   ctx.fillRect(0, 0, width, height);
+
+  if (typeof evilCircle === 'undefined') {
+    evilCircle = new EvilCircle(width/2, height/2, 'white', 10, true);
+    evilCircle.setControls();
+  }
 
   while(balls.length < 40) {
     var size = random(5,10);
@@ -153,9 +158,14 @@ function loop() {
   }
 
   for (var i = 0; i < balls.length; i++) {
-    balls[i].draw();
-    balls[i].update();
-    balls[i].collisionDetect();
+    if (balls[i].exists) {
+      balls[i].draw();
+      balls[i].update();
+      balls[i].collisionDetect();
+    }
+    evilCircle.draw();
+    evilCircle.checkBounds();
+    evilCircle.collisionDetect();
   }
 
   requestAnimationFrame(loop);
