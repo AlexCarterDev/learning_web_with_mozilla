@@ -13,11 +13,16 @@ function random(min,max) {
   return num;
 }
 
-function Ball(x, y, velX, velY, color, size) {
+function Shape(x, y, velX, velY, exists) {
   this.x = x;
   this.y = y;
   this.velX = velX;
   this.velY = velY;
+  this.exists = exists;
+}
+
+function Ball(x, y, velX, velY, color, size, exists) {
+  Shape.call(this, x, y, velX, velY, exists);
   this.color = color;
   this.size = size;
 }
@@ -60,7 +65,7 @@ Ball.prototype.collisionDetect = function() {
       var distance = Math.sqrt(dx * dx + dy * dy);
 
       if (distance < this.size + balls[i].size) {
-        
+
         balls[i].color = this.color = 'rgb(' + random(0, 255) + ',' + random(0, 255) + ',' + random(0, 255) +')';
       }
     }
@@ -81,7 +86,8 @@ function loop() {
       random(-70,70),
       random(-70,70),
       'rgb(' + random(0,255) + ',' + random(0,255) + ',' + random(0,255) +')',
-      size
+      size,
+      true
     );
     balls.push(ball);
   }
