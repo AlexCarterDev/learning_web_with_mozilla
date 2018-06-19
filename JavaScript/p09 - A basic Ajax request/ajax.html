@@ -73,6 +73,19 @@
       verseChoose.value = 'Verse 1';
 
       function updateDisplay(verse) {
+        updateDisplayByFetch(verse);
+      }
+
+      function updateDisplayByFetch(verse) {
+        url = 'poems/' + verse.replace(' ', '').toLowerCase() + '.txt';
+        fetch(url).then(function(response) {
+          response.text().then(function(text) {
+            poemDisplay.textContent = text;
+          });
+        });
+      }
+
+      function updateDisplayByXHR(verse) {
         url = 'poems/' + verse.replace(' ', '').toLowerCase() + '.txt';
         var request = new XMLHttpRequest();
         request.open('GET', url);
@@ -82,7 +95,6 @@
         }
         request.send();
       }
-
 
     </script>
   </body>
