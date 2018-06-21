@@ -19,6 +19,24 @@
         }
         var map = new google.maps.Map(document.getElementById("map_canvas"), myOptions);
 
+        // You can use your own icon for markers on maps
+        // In this case svg icon (downloaded from site http://map-icons.com/)
+        var icon = {
+          path: 'M0-48c-9.8 0-17.7 7.8-17.7 17.4 0 15.5 17.7 30.6 17.7 30.6s17.7-15.4 17.7-30.6c0-9.6-7.9-17.4-17.7-17.4z',
+          fillColor: '#00ff00',
+          fillOpacity: .5,
+          anchor: new google.maps.Point(0,0),
+          strokeWeight: 1,
+          scale: .5
+        }
+        
+        var marker = new google.maps.Marker({
+          position: latlng,
+          icon: icon,
+          map: map
+        });
+
+
       });
 
     } else {
