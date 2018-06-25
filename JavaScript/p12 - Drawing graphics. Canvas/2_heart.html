@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Canvas</title>
+    <style>
+      body {
+        margin: 0;
+        overflow: hidden;
+      }
+    </style>
+  </head>
+  <body>
+    <canvas class="myCanvas">
+      <p>Add suitable fallback here.</p>
+    </canvas>
+
+    <script>
+
+      var canvas = document.querySelector('.myCanvas');
+      var width = canvas.width = window.innerWidth;
+      var height = canvas.height = window.innerHeight;
+      var ctx = canvas.getContext('2d');
+
+      ctx.fillStyle = 'rgb(255,255,255)';
+      ctx.fillRect(0,0,width,height);
+
+      ctx.fillStyle = 'red';
+      ctx.beginPath();
+      ctx.moveTo(75, 40);
+      ctx.bezierCurveTo(75, 37, 70, 25, 50, 25);
+      ctx.bezierCurveTo(25, 25, 25, 50, 25, 50);
+      ctx.bezierCurveTo(25, 85, 60, 102, 75, 110);
+
+      ctx.bezierCurveTo(90, 102, 125, 85, 125, 50);
+      ctx.bezierCurveTo(125, 50, 125, 25, 100, 25);
+      ctx.bezierCurveTo(80, 25, 75, 37, 75, 40);
+      ctx.fill();
+
+      // A cubic Bézier curve
+      // https://www.w3schools.com/tags/canvas_beziercurveto.asp
+      
+      // A quadratic Bézier curve
+      // https://www.w3schools.com/tags/canvas_quadraticcurveto.asp
+      function degToRad(deg) {
+        return deg * Math.PI / 180;
+      }
+    </script>
+  </body>
+</html>
