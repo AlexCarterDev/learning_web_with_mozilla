@@ -73,6 +73,8 @@
 
       // Event listeners to control the functionality
       searchForm.addEventListener('submit', submitSearch);
+      nextBtn.addEventListener('click', nextPage);
+      previousBtn.addEventListener('click', previousPage);
 
       function submitSearch(e) {
         pageNumber = 0;
@@ -155,6 +157,26 @@
             section.appendChild(article);
           }
         }
+      }
+
+      function nextPage(e) {
+        // api allow page number less than or equal to 200
+        if (pageNumber < 200) {
+          pageNumber++;
+        } else {
+          return;
+        }
+
+        fetchResult(e);
+      }
+
+      function previousPage(e) {
+        if (pageNumber > 0) {
+          pageNumber--;
+        } else {
+          return;
+        }
+        fetchResult(e);
       }
     </script>
 
