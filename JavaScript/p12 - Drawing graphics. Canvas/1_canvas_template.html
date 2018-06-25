@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Canvas</title>
+    <style>
+      body {
+        margin: 0;
+        overflow: hidden;
+      }
+    </style>
+  </head>
+  <body>
+    <canvas class="myCanvas">
+      <p>Add suitable fallback here.</p>
+    </canvas>
+
+    <script>
+
+      var canvas = document.querySelector('.myCanvas');
+      var width = canvas.width = window.innerWidth;
+      var height = canvas.height = window.innerHeight;
+      var ctx = canvas.getContext('2d');
+
+      ctx.fillStyle = 'rgb(0,0,0)';
+      ctx.fillRect(0,0,width,height);
+
+      // Important point:  if you try to fill an incomplete path
+      // (i.e. one that is not closed), the browser fills in a straight line
+      // between the start and end point and then fills it in.
+
+      // Draw equalateral triangle
+      ctx.fillStyle = 'rgb(0,255,0)';
+      ctx.beginPath();
+      ctx.moveTo(50,50);
+
+      ctx.lineTo(150,50);
+      // The angles in an equalateral triangle are always 60 degrees
+      // One of the basic trigonometric formulae states that the length
+      // of the adjacent multiplied by the tangent of the angle is equal
+      // to the opposite
+      var tryHeight = 50 * Math.tan(degToRad(60));
+      ctx.lineTo(100, 50 + tryHeight);
+      ctx.lineTo(50,50);
+      ctx.fill();
+
+      // Draw Circle
+      ctx.fillStyle = 'rgb(0,0,255)';
+      ctx.beginPath();
+      // The first two specify the position of the arc's center
+      // The third is the circle's radius
+      // The fourth and fifth are the start and end angles at which to draw the circle
+      // The sixth parameter defines whether the circle should be drawn
+      // counterclockwise (anticlockwise) or clockwise
+      ctx.arc(150, 106, 50, degToRad(-90), degToRad(70), false);
+      ctx.fill();
+
+      // Draw packman
+      ctx.fillStyle = 'yellow';
+      ctx.beginPath();
+      ctx.arc(300, 106, 50, degToRad(-45), degToRad(45), true);
+      ctx.lineTo(300, 106);
+      ctx.fill();
+
+      function degToRad(deg) {
+        return deg * Math.PI / 180;
+      }
+    </script>
+  </body>
+</html>
