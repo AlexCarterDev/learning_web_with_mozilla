@@ -26,7 +26,15 @@
       ctx.fillStyle = 'rgb(0, 0, 0)';
       ctx.fillRect(0, 0, width, height);
 
+      // Draw overlapping rectangles
+      ctx.fillStyle = 'rgb(0,255,0)';
+      ctx.fillRect(50, 50, 100, 150);
 
+      ctx.fillStyle = 'rgb(255,255,0)';
+      ctx.fillRect(75, 75, 100, 100);
+
+      ctx.fillStyle = 'rgba(255, 150, 100, 0.75)';
+      ctx.fillRect(25, 100, 175, 50);
     </script>
   </body>
 </html>
