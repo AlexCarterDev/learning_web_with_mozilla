@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Canvas</title>
+    <style>
+      body {
+        margin: 0;
+        overflow: hidden;
+      }
+    </style>
+  </head>
+  <body>
+    <canvas class="myCanvas">
+      <p>Add suitable fallback here.</p>
+    </canvas>
+
+    <script>
+
+      var canvas = document.querySelector('.myCanvas');
+      var width = canvas.width = window.innerWidth;
+      var height = canvas.height = window.innerHeight;
+      var ctx = canvas.getContext('2d');
+
+      ctx.fillStyle = 'rgb(0,0,0)';
+      ctx.fillRect(0,0,width,height);
+
+      // Move origin point to the center of the canvas
+      ctx.translate(width/2, height/2);
+
+      var length = 50;
+      var moveOffset = 20;
+      var countParts = 340;
+      var shiftOffset = .5;
+      var shiftLength = 1;
+      var rotateDeg = 5;
+
+      for (var i = 0; i < countParts; i++) {
+        var bright = (i / countParts);
+        var r = Math.floor(rand(0, 256) * bright);
+        var g = Math.floor(255 * bright);
+        var b = Math.floor(rand(0, 256) * bright);
+        ctx.fillStyle = 'rgba(' + r + ', ' + g + ', ' + b + ', 1)';
+        ctx.beginPath();
+        ctx.moveTo(moveOffset, moveOffset);
+        ctx.lineTo(moveOffset+length, moveOffset);
+        var triHeight = length/2 * Math.tan(degToRad(60));
+        ctx.lineTo(moveOffset+(length/2), moveOffset+triHeight);
+        ctx.lineTo(moveOffset, moveOffset);
+        ctx.fill();
+
+        moveOffset += shiftOffset;
+        ctx.rotate(degToRad(rotateDeg));
+      }
+
+      function degToRad(deg) {
+        return deg * Math.PI / 180;
+      }
+
+      function rand(min, max) {
+        return Math.floor(Math.random() * (max-min+1)) + min;
+      }
+    </script>
+  </body>
+</html>
