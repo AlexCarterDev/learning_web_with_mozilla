@@ -28,6 +28,16 @@ fwd.addEventListener('click', mediaForward);
 
 media.addEventListener('timeupdate', setTime);
 
+timerWrapper.onclick = function(e) {
+  var domRect = timerWrapper.getBoundingClientRect();
+  var relativeX = e.x - domRect.x;
+  var width = domRect.width;
+  var proportion = relativeX / width;
+  var newTime = proportion * media.duration;
+
+  media.currentTime = newTime;
+}
+
 test_convertSecondsToTime_10000();
 test_convertSecondsToTime_1000();
 
