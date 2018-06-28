@@ -25,41 +25,56 @@ fwd.addEventListener('click', mediaForward);
 
 media.addEventListener('timeupdate', setTime);
 
-
 function stopMedia() {
-  media.pause();
-  media.currentPosition = 0;
-  play.setAttribute('data-icon', 'P');
+  mediaStopForward();
+  mediaStopBackward();
+  mediaPause();
+  media.currentTime = 0;
+}
 
-  rwd.classList.remove('active');
+function mediaPlay() {
+  play.setAttribute('data-icon', 'u');
+  media.play();
+}
+
+function mediaPause() {
+  play.setAttribute('data-icon', 'P');
+  media.pause();
+}
+
+function mediaStopForward() {
   fwd.classList.remove('active');
-  clearInterval(intervalRwd);
+  // cancels a timed, repeating action which was previously established
+  // by a call to setInterval().
   clearInterval(intervalFwd);
+  intervalFwd = false;
+}
+
+function mediaStopBackward() {
+  rwd.classList.remove('active');
+  clearInterval(intervalRwd);
+  intervalRwd = false;
 }
 
 function playPauseMedia() {
   if (media.paused) {
-    play.setAttribute('data-icon', 'u');
-    media.play();
+    mediaStopForward();
+    mediaStopBackward();
+    mediaPlay();
   } else {
-    play.setAttribute('data-icon', 'P');
-    media.pause();
+    mediaPause();
   }
 }
 
 function mediaBackward() {
-  // cancels a timed, repeating action which was previously established
-  // by a call to setInterval().
-  clearInterval(intervalFwd);
-  fwd.classList.remove('active');
+  mediaStopForward();
 
   if (rwd.classList.contains('active')) {
-    rwd.classList.remove('active');
-    clearInterval(intervalRwd);
-    media.play();
+    mediaStopBackward();
+    mediaPlay();
   } else {
     rwd.classList.add('active');
-    media.pause();
+    mediaPause();
     // repeatedly calls a function or executes a code snippet,
     // with a fixed time delay between each call.
     // Returned intervalID. This value can be passed to
@@ -69,24 +84,20 @@ function mediaBackward() {
 }
 
 function mediaForward() {
-  clearInterval(intervalRwd);
-  rwd.classList.remove('active');
+  mediaStopBackward();
 
   if (fwd.classList.contains('active')) {
-    fwd.classList.remove('active');
-    clearInterval(intervalFwd);
-    media.play();
+    mediaStopForward();
+    mediaPlay();
   } else {
     fwd.classList.add('active');
-    media.pause();
+    mediaPause();
     intervalFwd = setInterval(windForward, 200);
   }
 }
 
 function windBackward() {
   if (media.currentTime <= 3) {
-    rwd.classList.remove('active');
-    clearInterval(intervalRwd);
     stopMedia();
   } else {
     media.currentTime -= 3;
@@ -95,8 +106,6 @@ function windBackward() {
 
 function windForward() {
   if (media.currentTime >= media.duration - 3) {
-    fwd.classList.remove('active');
-    clearInterval(intervalFwd);
     stopMedia();
   } else {
     media.currentTime += 3;
@@ -106,6 +115,7 @@ function windForward() {
 function setTime() {
   var minutes = Math.floor(media.currentTime / 60);
   var seconds = Math.floor(media.currentTime - minutes * 60);
+
   var minuteValue;
   var secondValue;
 
