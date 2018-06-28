@@ -12,6 +12,9 @@ var timerBar = document.querySelector('.timer div');
 
 var intervalFwd;
 var intervalRwd;
+const MINUTES_IN_HOUR = 60;
+const SECONDS_IN_MINUTES = 60;
+const SECONDS_IN_HOUR = MINUTES_IN_HOUR * SECONDS_IN_MINUTES;
 
 media.removeAttribute('controls');
 controls.style.visibility = 'visible';
@@ -24,6 +27,23 @@ rwd.addEventListener('click', mediaBackward);
 fwd.addEventListener('click', mediaForward);
 
 media.addEventListener('timeupdate', setTime);
+
+test_convertSecondsToTime_10000();
+test_convertSecondsToTime_1000();
+
+function test_convertSecondsToTime_1000() {
+  var time = convertSecondsToTime(1000);
+  console.assert(time.hours === 0);
+  console.assert(time.minutes === 16);
+  console.assert(time.seconds === 40);
+}
+
+function test_convertSecondsToTime_10000() {
+  var time = convertSecondsToTime(10000);
+  console.assert(time.hours === 2);
+  console.assert(time.minutes === 46);
+  console.assert(time.seconds === 40);
+}
 
 function stopMedia() {
   mediaStopForward();
@@ -112,26 +132,27 @@ function windForward() {
   }
 }
 
+function convertSecondsToTime(s) {
+  var time = { };
+
+  time.hours = Math.floor(s / SECONDS_IN_HOUR);
+  time.minutes = Math.floor((s - time.hours * SECONDS_IN_HOUR) / SECONDS_IN_MINUTES);
+  time.seconds = Math.floor(s - (time.minutes * SECONDS_IN_MINUTES + time.hours * SECONDS_IN_HOUR));
+  return time;
+}
+
+function pad(n) {
+  return ('0' + n).slice(-2);
+}
+
 function setTime() {
-  var minutes = Math.floor(media.currentTime / 60);
-  var seconds = Math.floor(media.currentTime - minutes * 60);
+  var time = convertSecondsToTime(media.currentTime);
 
-  var minuteValue;
-  var secondValue;
+  var hourValue = pad(time.hours);
+  var minuteValue = pad(time.minutes);
+  var secondValue = pad(time.seconds);
 
-  if (minutes < 10) {
-    minuteValue = '0' + minutes;
-  } else {
-    minuteValue = minutes;
-  }
-
-  if (seconds < 10) {
-    secondValue = '0' + seconds;
-  } else {
-    secondValue = seconds;
-  }
-
-  var mediaTime = minuteValue + ':' + secondValue;
+  var mediaTime = hourValue + ':' + minuteValue + ':' + secondValue;
   timer.textContent = mediaTime;
 
   var barLength = timerWrapper.clientWidth * (media.currentTime / media.duration);
